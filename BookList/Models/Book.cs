@@ -10,8 +10,9 @@ namespace BookList.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Kitap adı boş geçilemez!")]
         public string BookName { get; set; }
         public string Writer { get; set; }
+        public string ISBN { get; set; }
     }
 }

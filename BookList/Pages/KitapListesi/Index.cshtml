@@ -1,0 +1,61 @@
+﻿@page
+@model BookList.Pages.KitapListesi.IndexModel
+
+<br/>
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Kitap Listesi</h2>
+        <div class="col-3">
+            <a class="btn btn-info form-control text-white">Yeni Kitap Oluştur</a>
+        </div>
+        <div class="col-12 border p-3 mt-3">
+            <form method="post">
+                @if (Model.Books.Count() > 0)
+                { 
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>
+                                <label asp-for="Books.FirstOrDefault().BookName">Kitap Adı</label>
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(a => a.Books.FirstOrDefault().Writer)*@
+                                <label asp-for="Books.FirstOrDefault().Writer">Yazar</label>
+                            </th>
+                            <th>
+                                <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                            </th>
+                            <th>İŞLEMLER</th>
+                        </tr>
+                        @foreach(var item in Model.Books)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(a => item.BookName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(a => item.Writer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(a => item.ISBN)
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Sil</button>
+                            <a asp-page="Duzenle" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Düzenle</a>
+                        </td>
+
+                    </tr>
+                }
+                    </table>
+
+                }
+                else
+            {
+                <p>Listelenecek kitap bulunamadı...</p>
+            }
+            </form >
+
+        </div>
+</div>
+</div>
+
+
